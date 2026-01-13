@@ -96,6 +96,7 @@ jobs:
 
       # Шаг 9: Создание README для отчета
       - name: Create report info
+        if: always()
         run: |
           cat > build/reports/allure-report/README.md << 'EOF'
           # Allure Test Report
@@ -162,25 +163,8 @@ jobs:
 
     steps:
       - name: Report URL
+        if: always()
         run: |
-          REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-          echo "🔗 Allure Report URL: $REPORT_URL"
-
-      - name: Report Success
-        if: needs.test.result == 'success'
-        run: |
-          REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-          echo "🔗 Allure Report URL: $REPORT_URL"
-          echo "::notice title=Allure Report::$REPORT_URL"
-          echo "🎉 Тесты прошли успешно!"
-          echo "📊 Allure Report доступен:"
-          echo "   💾 Скачать: В разделе Artifacts как 'allure-report-download'"
-          echo "   🌐 Онлайн: После настройки GitHub Pages"
-
-      - name: Report Failure
-        if: needs.test.result == 'failure'
-        run: |
-          echo "❌ Тесты завершились с ошибками"
-          echo "📋 Подробности в разделе Artifacts как 'test-results-download'"
+          echo "Тесты выполнены. См. отчёт по ссылке:"
           REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
           echo "🔗 Allure Report URL: $REPORT_URL"
