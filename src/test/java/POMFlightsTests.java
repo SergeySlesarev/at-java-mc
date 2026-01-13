@@ -27,7 +27,7 @@ public class POMFlightsTests {
     @BeforeEach
     void setUp() {
         open("https://slqamsk.github.io/cases/slflights/v01/");
-        getWebDriver().manage().window().maximize();
+        //getWebDriver().manage().window().maximize();
     }
     // ... Автотесты
     // 1. Неуспешный логин
